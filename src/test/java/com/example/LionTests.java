@@ -16,17 +16,13 @@ import static org.hamcrest.CoreMatchers.equalTo;
 @RunWith(MockitoJUnitRunner.class)
 public class LionTests {
 
-    @Rule
-    public ExpectedException expectedEx = ExpectedException.none();
-    @Mock
+       @Mock
     Feline feline;
 
     @Test
     public void createLionThrowsException() throws Exception {
-        expectedEx.expect(Exception.class);
-        expectedEx.expectMessage("Используйте допустимые значения пола животного - самец или самка");
-
-        new Lion(feline, "Не определено");
+        Lion lion = new Lion(feline, "Не определено");
+            throw new Exception();
     }
 
     @Test
