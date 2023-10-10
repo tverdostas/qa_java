@@ -12,6 +12,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LionTests {
@@ -20,9 +22,12 @@ public class LionTests {
     Feline feline;
 
     @Test
-    public void createLionThrowsException() throws Exception {
-        Lion lion = new Lion(feline, "Не определено");
-            throw new Exception();
+    public void createLionThrowsException() {
+        Exception exception = assertThrows(Exception.class, () -> new Lion(feline,"Не определено"));
+        String expected = "Используйте допустимые значения пола животного - самец или самка";
+        String actual = exception.getMessage();
+        assertEquals(expected, actual);
+
     }
 
     @Test
